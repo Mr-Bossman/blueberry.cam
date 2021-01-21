@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta property="og:type" content="blueberry.cam">
+    <meta property="og:title" content="a joke website" />
+    <meta property="og:description" content="a joke website... i was going to make a live stream on this but that never happend" />
+    <meta property="og:url" content="blueberry.cam" />
+    <meta property="og:image" content="https://leekspin.co/image" />
+    <style>
+        html {
+            height: 100%;
+            width: 100%; 
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%; 
+            background-color:rgb(0, 0, 0);
+            position: fixed;
+              font-family: Arial, sans-serif;
+
+        }
+        #header {
+            width: 100%;
+            height: 6.75%;
+            background-color:rgb(51, 95, 176);
+            position: relative;
+            text-align: center;
+            min-height: 35px;
+        }
+        #content {
+            margin-top: 1.5%;
+            text-align: center;
+            height: 87%;
+            width: 100%;
+        }
+        #Welcome{
+            position: absolute;
+            display: inline;
+            width:100%;
+            left:0;
+        }
+        #menues{
+            position:relative;
+            display: none;
+            top: 100%;
+            width: 175%;
+            height: 320%;
+            min-width:120px;
+            max-height: 160px;
+            min-height: 90px;
+        }
+        #bars:hover #menues {
+            display: flex; 
+            background-color: rgb(240, 240, 255);
+
+        }
+        #in{
+            position: relative;
+            margin: 3%;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            flex: 1 1 100%;  
+            background-color: rgb(150, 150, 255);
+
+        }
+
+        .text{
+            font-family: Arial, sans-serif;
+        }
+        .centerH {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);    
+        }
+        #bars {
+            position: absolute;
+            text-align: center;
+            height: 100%;
+            width: 5%;
+            background: url(/menu) no-repeat 0 0;
+            background-size: contain;
+            background-position: center; 
+            index-z: -1;
+        }
+        #play{
+            position: absolute;
+            color: gray;
+            border-radius: 7px;
+            border: 1.5px solid lightgrey;
+            color: white;
+            text-align: center;
+            padding: .4%;
+            margin: 0;
+            margin-right: 2%;
+            display: inline-block;
+            right:0;
+        }
+        #image{
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+
+        }
+        #Msub{
+            text-align: center;
+            color: white;
+            margin:2%;
+            margin-left: 5%;
+            margin-right:5%;
+            border: 1.5px solid lightgrey; 
+            border-radius: 4px;
+        }
+
+    </style>
+    <title>BLUEBERRY.CAM</title>
+    <link rel="icon" href="/icon.png">
+
+</head>
+<body onresize="resize()" onload="start()">
+    <div id="header">
+        <div id="Welcome" class="centerH"  class="text" style="font-size: 200%; color: white;   ">Welcome to a Blueberry.cam</div>
+        <div  id="play" onclick="togglePlay()" class="centerH" class="text">Toggle Audio</div>
+        <div id="bars">
+            <div id="menues"  >
+                <div id="in">
+                    <div id="Msub" class="text" onclick="window.location = String(window.location).concat('about');">About</div>
+                    <div id="Msub" class="text" onclick="window.location='http://jachan.dev';">Jachan.dev</div>
+                    <div id="Msub" class="text" onclick="window.location='http://google.com';">More</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+
+<video id="image" playsinline style="pointer-events: none " autoplay="" loop>
+  <source id="vidsource" src="/blueberry" new="" type="video/mp4" />Sorry, your browser does not support our time lapse video.
+</video>
+
+
+    </div>
+
+    <script>
+        function start(){
+            var offset = (new Date().getTimezoneOffset())/60;
+            document.getElementById("image").currentTime =  "60";
+            resize()
+        }
+        function resize(){
+            var welcome = document.getElementById("Welcome");
+            if (welcome.offsetWidth< 620) {
+                welcome.innerHTML = "Welcome!";
+            } else {
+                welcome.innerHTML = "Welcome to a Blueberry.cam";
+            }
+
+        }
+
+    </script>
+    <script>
+        var x = document.getElementById("image"); 
+        function togglePlay() {
+            x.muted = !x.muted;
+        };
+
+    </script>
+</body>
+</html>
