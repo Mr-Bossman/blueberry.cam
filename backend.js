@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
 var fs = require('fs');
-
+var ffmpeg = require('fluent-ffmpeg');
+var PubSub = require("pubsub-js");
+var net = require("net");
+var connections = 0
+var client = new net.Socket();
+const boundaryID = "BOUNDRY";
 app.get('/', (req, res, next) => {
   res.sendfile('./index.html');
 })
@@ -23,14 +28,7 @@ app.get('/music.ogg', (req, res, next) => {
 app.get('/icon.png', (req, res, next) => {
   res.sendfile('./icon.png');
 })
-var ffmpeg = require('fluent-ffmpeg');
-const express = require('express');
-const app = express();
-var PubSub = require("pubsub-js");
-var net = require("net");
-var connections = 0
-var client = new net.Socket();
-const boundaryID = "BOUNDRY";
+
 app.get('/vid.jpg', function(req, res) {
 
     res.writeHead(200, {
