@@ -38,9 +38,7 @@ app.get('/vid.jpg', function(req, res) {
         'Cache-Control': 'no-cache, no-store, max-age=0, must-revalidate',
         'Pragma': 'no-cache'
     });
-    if (connections == 0) {
-        start();
-    }
+    start();
     connections++;
     console.log("Start: " + connections);
 
@@ -87,9 +85,13 @@ function restart (){
 }
 ffstream.on("end", restart);
 
+
 function start() {
     if(client.destroyed){
         client = new net.Socket();
+        client.connect(1337, '127.0.0.1', function() {
+            client.write('stream');
+        });
     }
     client.on('error', function(ex) {
         client.destroy();
@@ -99,11 +101,8 @@ function start() {
         client.destroy();
         client.removeAllListeners();
     });
-    client.connect(1337, '127.0.0.1', function() {
-        client.write('stream');
-    });
+    client.write('stream');
 }
-
 function end() {
     if(!client.destroyed){
 
